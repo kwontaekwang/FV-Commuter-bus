@@ -1,0 +1,12 @@
+{
+  "name": "음성공장 통근버스",
+  "short_name": "통근버스",
+  "description": "음성공장 통근버스 노선 및 정류장 안내",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f8fc",
+  "theme_color": "#0b6bcb",
+  "lang": "ko",
+  "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

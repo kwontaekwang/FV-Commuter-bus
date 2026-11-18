@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b6bcb">
+  <meta name="robots" content="noindex,nofollow">
+  <title>통근버스 관리자</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard-dynamic-subset.min.css">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="admin-body">
+  <header class="topbar">
+    <div class="shell topbar__inner">
+      <a class="brand" href="./index.html"><span class="brand__mark" aria-hidden="true">B</span><span><strong>통근버스 관리자</strong><small>정적 버전 · 브라우저 저장</small></span></a>
+      <a class="button button--ghost" href="./index.html">사용자 화면</a>
+    </div>
+  </header>
+
+  <main class="shell admin-main">
+    <section class="login-card" id="loginPanel">
+      <p class="eyebrow">ADMIN ACCESS</p>
+      <h1>관리자 로그인</h1>
+      <p>노선 편집 화면에 접근하려면 비밀번호를 입력하세요.</p>
+      <form id="loginForm">
+        <label class="field"><span>비밀번호</span><input id="passwordInput" type="password" autocomplete="current-password" required autofocus></label>
+        <p class="form-error" id="loginError" role="alert"></p>
+        <button class="button button--primary button--wide" type="submit">로그인</button>
+      </form>
+      <p class="login-hint">초기 비밀번호: <code>bus2026</code> · 로그인 후 변경하세요.</p>
+      <div class="security-note"><strong>정적 사이트 안내</strong><p>이 로그인은 편집 화면을 가리는 간편 보호입니다. 서버 인증이 아니므로 민감한 정보는 저장하지 마세요.</p></div>
+    </section>
+
+    <section id="adminPanel" hidden>
+      <div class="admin-heading">
+        <div><p class="eyebrow">ROUTE MANAGER</p><h1>노선 데이터 관리</h1><p>현재 브라우저에서 수정하고, 배포용 파일로 내보낼 수 있습니다.</p></div>
+        <button class="button button--ghost" id="logoutButton" type="button">로그아웃</button>
+      </div>
+
+      <div class="admin-stats">
+        <div><span>노선</span><strong id="adminRouteCount">0</strong></div>
+        <div><span>정류장 기록</span><strong id="adminStopCount">0</strong></div>
+        <div><span>현재 상태</span><strong id="saveState">원본</strong></div>
+      </div>
+
+      <div class="admin-layout">
+        <aside class="admin-sidebar">
+          <label class="field"><span>편집할 노선</span><select id="routeSelect"></select></label>
+          <div class="admin-actions">
+            <button class="button button--primary button--wide" id="saveRoute" type="button">이 노선 저장</button>
+            <button class="button button--soft button--wide" id="addStop" type="button">정류장 추가</button>
+          </div>
+          <hr>
+          <h2>배포 데이터</h2>
+          <button class="button button--soft button--wide" id="exportJs" type="button">app-data.js 내보내기</button>
+          <button class="button button--soft button--wide" id="exportJson" type="button">JSON 백업</button>
+          <label class="button button--soft button--wide file-button">JSON 가져오기<input id="importJson" type="file" accept="application/json,.json"></label>
+          <button class="button button--danger button--wide" id="resetData" type="button">원본 데이터로 초기화</button>
+          <p class="sidebar-help"><strong>배포 방법</strong><br>내보낸 <code>app-data.js</code>로 저장소의 <code>js/app-data.js</code>를 교체하면 모든 사용자에게 반영됩니다.</p>
+        </aside>
+
+        <div class="editor-card">
+          <div class="editor-section">
+            <h2>노선 정보</h2>
+            <div class="form-grid">
+              <label class="field"><span>노선 ID</span><input id="editId" readonly></label>
+              <label class="field"><span>구분</span><input id="editCategory"></label>
+              <label class="field"><span>운행 유형</span><input id="editServiceType"></label>
+              <label class="field"><span>노선명</span><input id="editName"></label>
+              <label class="field"><span>운행 시간대</span><input id="editTimeBand"></label>
+              <label class="field field--wide"><span>비고</span><input id="editNote"></label>
+            </div>
+          </div>
+          <div class="editor-section">
+            <div class="editor-title-row"><h2>정류장 목록</h2><span id="editorStopCount"></span></div>
+            <div class="stop-editor" id="stopEditor"></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="password-card">
+        <div><h2>관리자 비밀번호 변경</h2><p>변경 내용은 이 브라우저에만 저장됩니다.</p></div>
+        <form id="passwordForm">
+          <label class="field"><span>새 비밀번호</span><input id="newPassword" type="password" minlength="6" autocomplete="new-password" required></label>
+          <label class="field"><span>비밀번호 확인</span><input id="confirmPassword" type="password" minlength="6" autocomplete="new-password" required></label>
+          <button class="button button--soft" type="submit">비밀번호 변경</button>
+          <p class="form-error" id="passwordError" role="alert"></p>
+        </form>
+      </section>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./js/config.js"></script>
+  <script src="./js/app-data.js"></script>
+  <script src="./js/admin.js"></script>
+</body>
+</html>

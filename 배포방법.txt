@@ -1,0 +1,23 @@
+[GitHub Pages 배포 방법]
+
+1. 이 ZIP 파일을 PC에서 압축 해제합니다.
+2. GitHub의 kwontaekwang/Commuter-bus 저장소로 이동합니다.
+3. 저장소 루트에서 Add file → Upload files를 누릅니다.
+4. 압축을 푼 폴더 안의 모든 파일과 폴더를 업로드합니다.
+   중요: 통근버스_정적앱 폴더째가 아니라, index.html이 저장소 최상단에 오도록 올립니다.
+5. Commit changes를 누릅니다.
+6. Settings → Pages에서 아래와 같이 설정합니다.
+   - Source: Deploy from a branch
+   - Branch: main
+   - Folder: /(root)
+7. 잠시 뒤 https://kwontaekwang.github.io/Commuter-bus/ 로 접속합니다.
+
+관리자 주소:
+https://kwontaekwang.github.io/Commuter-bus/admin.html
+
+초기 관리자 비밀번호:
+bus2026
+
+관리자에서 수정한 내용은 해당 브라우저에만 저장됩니다.
+전체 사용자에게 반영하려면 관리자 화면의 'app-data.js 내보내기'를 누른 뒤,
+GitHub 저장소의 js/app-data.js 파일을 내보낸 파일로 교체하세요.
